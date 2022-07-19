@@ -1,58 +1,23 @@
-import {
-    Mesh,
-    PerspectiveCamera,
-    PlaneBufferGeometry,
-    RawShaderMaterial,
-    Scene,
-    Vector3,
-    WebGLRenderer
-} from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import GLInstance from "./gl";
+import { WebGL2RenderingContextCustom } from "./models/webgl2-rendering-context-custom";
 
-// shaders files
-import shader from "./shaders/fragment.fs.glsl";
-import vertext from "./shaders/vertex.vs.glsl";
+let gl: WebGL2RenderingContextCustom | null;
 
-const scene = new Scene();
-const camera = new PerspectiveCamera(
-  45,
-  window.innerWidth / window.innerHeight,
-  0.1,
-  1000
-);
-const renderer = new WebGLRenderer();
-renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+window.addEventListener('load', () => {
+  // Get our extended GL Context Object
+  gl = GLInstance('glcanvas');
 
-const boxGeometry = new PlaneBufferGeometry(1, 1, 32, 32);
+  if (!gl) {
+    console.error(`No webgl 2.0 context loaded`);
+  }
 
-const boxMaterial = new RawShaderMaterial({
-  vertexShader: vertext,
-  fragmentShader: shader,
+  gl?.fSetSize(500,500).fClear();
+
+  // Shaders
+  // SHADERS STEPS
+  // 1. Get vertext and Fragment Shader Text
+  // 2. Compile text and validate
+  // 3. Link the shaders together as a program
+  // 4. Get Location of Uniforms and Attributes
+
 });
-
-const box = new Mesh(boxGeometry, boxMaterial);
-
-scene.add(box);
-camera.position.z = 5;
-camera.lookAt(new Vector3(0, 0, 0));
-document.body.appendChild(renderer.domElement);
-
-const orbitControl = new OrbitControls(camera, renderer.domElement);
-
-window.addEventListener(
-  "resize",
-  () => {
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-  },
-  false
-);
-
-function animate() {
-  requestAnimationFrame(animate);
-  orbitControl.update();
-  renderer.render(scene, camera);
-}
-animate();
