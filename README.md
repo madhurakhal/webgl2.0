@@ -1,2 +1,2 @@
-# boilerplate
-Boilerplate code for three.js
+# Webgl 2.0
+Learning Webgl 2.0
