@@ -1,0 +1,33 @@
+{
+  "name": "boilerplate",
+  "version": "1.0.0",
+  "description": "Boilerplate code for three.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --watch --progress",
+    "start": "http-server "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/madhurakhal/boilerplate.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/madhurakhal/boilerplate/issues"
+  },
+  "homepage": "https://github.com/madhurakhal/boilerplate#readme",
+  "dependencies": {
+    "three": "^0.142.0",
+    "ts-shader-loader": "^1.0.6"
+  },
+  "devDependencies": {
+    "@types/three": "^0.141.0",
+    "ts-loader": "^9.3.1",
+    "typescript": "^4.7.4",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0"
+  }
+}
