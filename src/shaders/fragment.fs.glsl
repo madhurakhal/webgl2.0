@@ -1,11 +1,8 @@
+# version 300 es
 precision highp float;
 
-float inCircle(vec2 position, vec2 center, float radius) {
-    return 1.0;
-}
-
-varying vec2 vUv;
+out vec4 outColor;
 
 void main() {
-    gl_FragColor = vec4(vUv, 0.0, 1.0);
+    outColor = vec4(0.0, 0.5, 0.5, 1.0);
 }

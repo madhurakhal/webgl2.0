@@ -69,4 +69,15 @@ export class ShaderUtils {
     gl.deleteShader(vShader);
     return prog;
   }
+
+  domShaderProgram(
+    gl: WebGL2RenderingContextCustom,
+    vertShaderText: string,
+    fragShaderText: string,
+    doValidate: boolean
+  ) {
+    const vShader = ShaderUtils.createShader(gl, vertShaderText, gl.VERTEX_SHADER) as WebGLShader;
+    const fShader = ShaderUtils.createShader(gl, fragShaderText, gl.FRAGMENT_SHADER) as WebGLShader;
+    return ShaderUtils.createProgram(gl, vShader, fShader, doValidate);
+  }
 }

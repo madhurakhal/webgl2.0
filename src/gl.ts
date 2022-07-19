@@ -29,6 +29,16 @@ function GLInstance(canvasId: string): WebGL2RenderingContextCustom | null {
     this.viewport(0, 0, width, height);
     return this;
   };
+
+  gl.fCreateArrayBuffer = function(floatArr: Float32Array, isStatic = true) {
+    const buf = this.createBuffer();
+    this.bindBuffer(this.ARRAY_BUFFER, buf);
+    this.bufferData(this.ARRAY_BUFFER, floatArr, isStatic ? this.STATIC_DRAW : this.DYNAMIC_DRAW);
+    this.bindBuffer(this.ARRAY_BUFFER, null);
+    return buf;
+  }
+
+
   return gl;
 }
 export default GLInstance;

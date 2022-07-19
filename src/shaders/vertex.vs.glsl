@@ -1,12 +1,8 @@
-uniform mat4 projectionMatrix;
-uniform mat4 viewMatrix;
-uniform mat4 modelMatrix;
+# version 300 es
+in vec3 a_position;
+uniform float uPointSize;
 
-attribute vec3 position;
-attribute vec2 uv;
-
-varying vec2 vUv;
 void main(){
-    gl_Position = projectionMatrix * modelMatrix * viewMatrix * vec4(position, 1.0);
-    vUv = uv;
+    gl_PointSize = uPointSize;
+    gl_Position = vec4(a_position, 1.0);
 }
